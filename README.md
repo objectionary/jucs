@@ -2,10 +2,10 @@
 [![DevOps By Rultor.com](http://www.rultor.com/b/objectionary/jucs)](http://www.rultor.com/p/objectionary/jucs)
 [![We recommend IntelliJ IDEA](https://www.elegantobjects.org/intellij-idea.svg)](https://www.jetbrains.com/idea/)
 
-[![mvn](https://github.com/objectionary/jucs/actions/workflows/mvn.yml/badge.svg)](https://github.com/objectionary/jucs/actions/workflows/mvn.yml)
+[![mvn](https://github.com/org.eolang/jucs/actions/workflows/mvn.yml/badge.svg)](https://github.com/org.eolang/jucs/actions/workflows/mvn.yml)
 [![PDD status](http://www.0pdd.com/svg?name=objectionary/jucs)](http://www.0pdd.com/p?name=objectionary/jucs)
 [![Maven Central](https://img.shields.io/maven-central/v/com.objectionary/jucs.svg)](https://maven-badges.herokuapp.com/maven-central/com.objectionary/jucs)
-[![Javadoc](http://www.javadoc.io/badge/com.objectionary/jucs.svg)](http://www.javadoc.io/doc/com.objectionary/jucs)
+[![Javadoc](http://www.javadoc.io/badge/org.eolang/jucs.svg)](http://www.javadoc.io/doc/org.eolang/jucs)
 [![codecov](https://codecov.io/gh/objectionary/jucs/branch/master/graph/badge.svg)](https://codecov.io/gh/objectionary/jucs)
 [![Hits-of-Code](https://hitsofcode.com/github/objectionary/jucs)](https://hitsofcode.com/view/github/objectionary/jucs)
 ![Lines of code](https://img.shields.io/tokei/lines/github/objectionary/jucs)
