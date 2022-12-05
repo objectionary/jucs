@@ -34,9 +34,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 final class SimpleTest {
 
     @ParameterizedTest
-    @ClasspathSource("com/yegor256/jucs/packs/")
-    void simpleTest(final Pack pack) {
-        Assertions.assertTrue(pack.matches());
+    @ClasspathSource("com/yegor256/jucs/")
+    void simpleTest(final String file) {
+        Assertions.assertEquals(file, "Hello, world!\n");
     }
 
 }

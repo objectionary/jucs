@@ -23,6 +23,10 @@
  */
 package org.eolang.jucs;
 
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.nio.file.PathMatcher;
+import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.stream.Stream;
@@ -55,47 +59,36 @@ final class ClasspathArgumentsProvider implements ArgumentsProvider,
     @Override
     public Stream<? extends Arguments> provideArguments(
         final ExtensionContext ctx) {
-        final String dir = this.annotation.value();
-        return ClasspathArgumentsProvider.yamls(dir, "")
+        return this.yamls("")
             .stream()
             .map(
                 p -> Arguments.of(
-                    new Pack.Default(
-                        new UncheckedText(
-                            new TextOf(
-                                new ResourceOf(
-                                    String.format("%s/%s", dir, p)
-                                )
-                            )
-                        ).asString()
-                    )
+                    new UncheckedText(new TextOf(new ResourceOf(p))).asString()
                 )
             );
     }
 
     /**
      * Find all YAMLs recursively on classpath.
-     * @param path The value
      * @param prefix Prefix (empty when it starts)
      * @return The list of full paths
      */
-    private static Collection<String> yamls(final String path,
-        final String prefix) {
+    private Collection<String> yamls(final String prefix) {
         final Collection<String> out = new LinkedList<>();
+        final String home = String.format("%s%s", this.annotation.value(), prefix);
         final String folder = new UncheckedText(
-            new TextOf(new ResourceOf(path))
+            new TextOf(new ResourceOf(home))
         ).asString();
-        final String[] paths = folder.split("\n");
-        for (final String sub : paths) {
-            if (sub.endsWith(".yaml")) {
-                out.add(String.format("%s%s", prefix, sub));
+        final PathMatcher matcher = FileSystems.getDefault().getPathMatcher(
+            String.format("glob:%s", this.annotation.glob())
+        );
+        final String[] subs = folder.split("\n");
+        for (final String sub : subs) {
+            final Path path = Paths.get(String.format("%s%s", prefix, sub));
+            if (matcher.matches(path)) {
+                out.add(String.format("%s/%s", home, sub));
             } else {
-                out.addAll(
-                    ClasspathArgumentsProvider.yamls(
-                        String.format("%s%s/", path, sub),
-                        String.format("%s/", sub)
-                    )
-                );
+                out.addAll(this.yamls(String.format("%s/", sub)));
             }
         }
         return out;
