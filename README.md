@@ -12,7 +12,7 @@
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/objectionary/jucs/blob/master/LICENSE.txt)
 
 There is a simple annotation in this package, which may help you
-turn files in classpath into sources of a JUnit test method.
+turn files in classpath into sources of a JUnit5 test method.
 
 First, add this to your `pom.xml`:
 
@@ -31,7 +31,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 
 final class SimpleTest { 
     @ParameterizedTest
-    @ClasspathSource(value="org/example", glob="**/*.yaml")
+    @ClasspathSource(value="org/example/", glob="**/*.yaml")
     void simpleTest(String y) {
         // In the "y" variable is the content of the YAML file
     }

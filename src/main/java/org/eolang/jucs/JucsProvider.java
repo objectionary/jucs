@@ -81,7 +81,7 @@ final class JucsProvider implements ArgumentsProvider,
      */
     private Collection<String> yamls(final String prefix) {
         final Collection<String> out = new LinkedList<>();
-        final String home = String.format("%s%s", this.annotation.value(), prefix);
+        final String home = String.format("%s/%s", this.sanitized(), prefix);
         final String folder = new UncheckedText(
             new TextOf(new ResourceOf(home))
         ).asString();
@@ -98,5 +98,22 @@ final class JucsProvider implements ArgumentsProvider,
             }
         }
         return out;
+    }
+
+    /**
+     * Get sanitized home path.
+     * @return The path without front slash and with a tailing one
+     */
+    private String sanitized() {
+        final String path = this.annotation.value();
+        int begin = 0;
+        if (path.charAt(0) == '/') {
+            begin = 1;
+        }
+        int end = path.length();
+        if (path.charAt(end - 1) == '/') {
+            end -= 1;
+        }
+        return path.substring(begin, end);
     }
 }
