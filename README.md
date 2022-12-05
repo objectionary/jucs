@@ -1,15 +1,15 @@
 [![EO principles respected here](https://www.elegantobjects.org/badge.svg)](https://www.elegantobjects.org)
-[![DevOps By Rultor.com](http://www.rultor.com/b/yegor256/jucs)](http://www.rultor.com/p/yegor256/jucs)
+[![DevOps By Rultor.com](http://www.rultor.com/b/objectionary/jucs)](http://www.rultor.com/p/objectionary/jucs)
 [![We recommend IntelliJ IDEA](https://www.elegantobjects.org/intellij-idea.svg)](https://www.jetbrains.com/idea/)
 
-[![mvn](https://github.com/yegor256/jucs/actions/workflows/mvn.yml/badge.svg)](https://github.com/yegor256/jucs/actions/workflows/mvn.yml)
-[![PDD status](http://www.0pdd.com/svg?name=yegor256/jucs)](http://www.0pdd.com/p?name=yegor256/jucs)
-[![Maven Central](https://img.shields.io/maven-central/v/com.yegor256/jucs.svg)](https://maven-badges.herokuapp.com/maven-central/com.yegor256/jucs)
-[![Javadoc](http://www.javadoc.io/badge/com.yegor256/jucs.svg)](http://www.javadoc.io/doc/com.yegor256/jucs)
-[![codecov](https://codecov.io/gh/yegor256/jucs/branch/master/graph/badge.svg)](https://codecov.io/gh/yegor256/jucs)
-[![Hits-of-Code](https://hitsofcode.com/github/yegor256/jucs)](https://hitsofcode.com/view/github/yegor256/jucs)
-![Lines of code](https://img.shields.io/tokei/lines/github/yegor256/jucs)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/yegor256/jucs/blob/master/LICENSE.txt)
+[![mvn](https://github.com/objectionary/jucs/actions/workflows/mvn.yml/badge.svg)](https://github.com/objectionary/jucs/actions/workflows/mvn.yml)
+[![PDD status](http://www.0pdd.com/svg?name=objectionary/jucs)](http://www.0pdd.com/p?name=objectionary/jucs)
+[![Maven Central](https://img.shields.io/maven-central/v/com.objectionary/jucs.svg)](https://maven-badges.herokuapp.com/maven-central/com.objectionary/jucs)
+[![Javadoc](http://www.javadoc.io/badge/com.objectionary/jucs.svg)](http://www.javadoc.io/doc/com.objectionary/jucs)
+[![codecov](https://codecov.io/gh/objectionary/jucs/branch/master/graph/badge.svg)](https://codecov.io/gh/objectionary/jucs)
+[![Hits-of-Code](https://hitsofcode.com/github/objectionary/jucs)](https://hitsofcode.com/view/github/objectionary/jucs)
+![Lines of code](https://img.shields.io/tokei/lines/github/objectionary/jucs)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/objectionary/jucs/blob/master/LICENSE.txt)
 
 There is a simple annotation in this package, which may help you
 turn files in classpath into sources of a JUnit test method.
