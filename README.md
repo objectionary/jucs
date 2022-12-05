@@ -18,7 +18,7 @@ First, add this to your `pom.xml`:
 
 ```xml
 <dependency>
-  <groupId>com.yegor256</groupId>
+  <groupId>org.eolang</groupId>
   <artifactId>jucs</artifactId>
 </dependency>
 ```
@@ -26,6 +26,7 @@ First, add this to your `pom.xml`:
 Then, to iterate over `*.yaml` files in `src/test/resources/org/example/` directory:
 
 ```java
+import org.eolang.jucs.ClasspathSource;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 
