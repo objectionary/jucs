@@ -23,15 +23,8 @@
  */
 
 /**
- * Text Object Java Object (TOJO) in a storage.
+ * JUnit Classpath Sources.
  *
- * <p>Use it like this:
- *
- * <pre> Tojos jucs = new MonoTojos(new Csv("hello.csv"));
- * Tojo tojo = jucs.add("Jeff");
- * tojo.set("age", 35);
- * </pre>
- *
- * @since 0.1
+ * @since 0.0.1
  */
 package org.eolang.jucs;
