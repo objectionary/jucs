@@ -32,7 +32,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 
 final class SimpleTest { 
     @ParameterizedTest
-    @ClasspathSource(value="org/example/", glob="**/*.yaml")
+    @ClasspathSource(value="/org/example", glob="**/*.yaml")
     void simpleTest(String y) {
         // In the "y" variable is the content of the YAML file
     }
