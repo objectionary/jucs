@@ -38,7 +38,7 @@ import org.junit.jupiter.params.provider.ArgumentsSource;
 @Documented
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-@ArgumentsSource(ClasspathArgumentsProvider.class)
+@ArgumentsSource(JucsProvider.class)
 public @interface ClasspathSource {
 
     /**

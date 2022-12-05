@@ -31,12 +31,18 @@ import org.junit.jupiter.params.ParameterizedTest;
  *
  * @since 0.0.1
  */
-final class SimpleTest {
+final class JucsProviderTest {
 
     @ParameterizedTest
     @ClasspathSource("com/yegor256/jucs/")
     void simpleTest(final String file) {
         Assertions.assertEquals(file, "Hello, world!\n");
+    }
+
+    @ParameterizedTest
+    @ClasspathSource(value = "com/yegor256/jucs/", glob = "**/*.text")
+    void findsInFolders(final String file) {
+        Assertions.assertEquals(file, "hey!\n");
     }
 
 }

@@ -29,6 +29,7 @@ import java.nio.file.PathMatcher;
 import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.regex.Pattern;
 import java.util.stream.Stream;
 import org.cactoos.io.ResourceOf;
 import org.cactoos.text.TextOf;
@@ -43,8 +44,13 @@ import org.junit.jupiter.params.support.AnnotationConsumer;
  *
  * @since 0.0.1
  */
-final class ClasspathArgumentsProvider implements ArgumentsProvider,
+final class JucsProvider implements ArgumentsProvider,
     AnnotationConsumer<ClasspathSource> {
+
+    /**
+     * Is it a file?
+     */
+    private static final Pattern IS_FILE = Pattern.compile("^.+\\.[a-z]+$");
 
     /**
      * The annotation of the user.
@@ -87,7 +93,7 @@ final class ClasspathArgumentsProvider implements ArgumentsProvider,
             final Path path = Paths.get(String.format("%s%s", prefix, sub));
             if (matcher.matches(path)) {
                 out.add(String.format("%s/%s", home, sub));
-            } else {
+            } else if (!JucsProvider.IS_FILE.matcher(sub).matches()) {
                 out.addAll(this.yamls(String.format("%s/", sub)));
             }
         }

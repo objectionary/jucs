@@ -29,13 +29,13 @@ SOFTWARE.
     <artifactId>parent</artifactId>
     <version>0.64.1</version>
   </parent>
-  <groupId>com.yegor256</groupId>
+  <groupId>org.eolang</groupId>
   <artifactId>jucs</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>jucs</name>
   <description>JUnit Classpath Sources</description>
-  <url>https://github.com/yegor256/jucs</url>
+  <url>https://github.com/objectionary/jucs</url>
   <inceptionYear>2022</inceptionYear>
   <organization>
     <name>yegor256</name>
@@ -64,21 +64,21 @@ SOFTWARE.
   </developers>
   <issueManagement>
     <system>GitHub</system>
-    <url>https://github.com/yegor256/jucs/issues</url>
+    <url>https://github.com/objectionary/jucs/issues</url>
   </issueManagement>
   <scm>
-    <connection>scm:git:git@github.com:yegor256/jucs.git</connection>
-    <developerConnection>scm:git:git@github.com:yegor256/jucs.git</developerConnection>
-    <url>https://github.com/yegor256/jucs</url>
+    <connection>scm:git:git@github.com:objectionary/jucs.git</connection>
+    <developerConnection>scm:git:git@github.com:objectionary/jucs.git</developerConnection>
+    <url>https://github.com/objectionary/jucs</url>
   </scm>
   <ciManagement>
     <system>rultor</system>
-    <url>https://www.rultor.com/s/yegor256/jucs</url>
+    <url>https://www.rultor.com/s/objectionary/jucs</url>
   </ciManagement>
   <distributionManagement>
     <site>
       <id>github-pages</id>
-      <url>https://github.com/yegor256/jucs</url>
+      <url>https://github.com/objectionary/jucs</url>
     </site>
   </distributionManagement>
   <dependencies>
