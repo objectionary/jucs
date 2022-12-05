@@ -90,7 +90,7 @@ final class JucsProvider implements ArgumentsProvider,
         );
         final String[] subs = folder.split("\n");
         for (final String sub : subs) {
-            final Path path = Paths.get(String.format("%s%s", prefix, sub));
+            final Path path = Paths.get(String.format("/%s%s", prefix, sub));
             if (matcher.matches(path)) {
                 out.add(String.format("%s/%s", home, sub));
             } else if (!JucsProvider.IS_FILE.matcher(sub).matches()) {

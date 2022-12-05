@@ -45,4 +45,10 @@ final class JucsProviderTest {
         Assertions.assertEquals(file, "hey!\n");
     }
 
+    @ParameterizedTest
+    @ClasspathSource(value = "com/yegor256/jucs/bar", glob = "**/*.text")
+    void findsWithBigGlob(final String file) {
+        Assertions.assertEquals(file, "hey!\n");
+    }
+
 }
