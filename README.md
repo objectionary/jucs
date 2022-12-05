@@ -11,8 +11,8 @@
 ![Lines of code](https://img.shields.io/tokei/lines/github/objectionary/jucs)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/objectionary/jucs/blob/master/LICENSE.txt)
 
-There is a simple annotation in this package, which may help you
-turn files in classpath into sources of a JUnit5 test method.
+There is a simple `@ClasspathSource` annotation in this package. It may help you
+turn files, which are available in classpath, into sources of a JUnit5 test method.
 
 First, add this to your `pom.xml`:
 
@@ -23,7 +23,8 @@ First, add this to your `pom.xml`:
 </dependency>
 ```
 
-Then, to iterate over `*.yaml` files in `src/test/resources/org/example/` directory:
+Then, to iterate over the `*.yaml` files in the `src/test/resources/org/example/` 
+directory (assuming you use Maven or Gradle):
 
 ```java
 import org.eolang.jucs.ClasspathSource;
@@ -32,12 +33,15 @@ import org.junit.jupiter.params.ParameterizedTest;
 
 final class SimpleTest { 
     @ParameterizedTest
-    @ClasspathSource(value="/org/example", glob="**/*.yaml")
-    void simpleTest(String y) {
-        // In the "y" variable is the content of the YAML file
+    @ClasspathSource(value="/org/example", glob="**.yaml")
+    void simpleTest(String yaml) {
+        // In the "yaml" variable is the content of the YAML file
     }
 }
 ```
+
+The `simpleTest()` method will be called a number of times, every time
+getting the content of the next YAML file inside the `yaml` variable. 
 
 ## How to Contribute
 
