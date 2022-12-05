@@ -12,12 +12,10 @@
 ![Lines of code](https://img.shields.io/tokei/lines/github/yegor256/jucs)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/yegor256/jucs/blob/master/LICENSE.txt)
 
-It's a simple manager of "records" in a text file of CSV, JSON, etc. format.
-It's something you would use when you don't want to run a full database, but
-just a list of lines in a file is not enough. You need a file with structured
-records.
+There is a simple annotation in this package, which may help you
+turn files in classpath into sources of a JUnit test method.
 
-You add this to your `pom.xml`:
+First, add this to your `pom.xml`:
 
 ```xml
 <dependency>
@@ -26,22 +24,20 @@ You add this to your `pom.xml`:
 </dependency>
 ```
 
-Then, to manage `books.csv` file:
+Then, to iterate over `*.yaml` files in `src/test/resources/org/example/` directory:
 
 ```java
-import org.eolang.jucs.MnCsv;
-import org.eolang.jucs.TjDefault;
-import org.eolang.jucs.Tojo;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.params.ParameterizedTest;
 
-Tojos jucs=new TjDefault(new MnCsv("books.csv"));
-    Tojo t1=jucs.add("Object Thinking"); // unique ID
-    t1.set("author","David West");
-    Tojo t2=jucs.select(
-    t->t.get("author").equals("David West")
-    ).get(0);
+final class SimpleTest { 
+    @ParameterizedTest
+    @ClasspathSource(value="org/example", glob="**/*.yaml")
+    void simpleTest(String y) {
+        // In the "y" variable is the content of the YAML file
+    }
+}
 ```
-
-Each record has a unique ID, which is also the first column.
 
 ## How to Contribute
 
