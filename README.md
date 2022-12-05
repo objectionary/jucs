@@ -4,7 +4,6 @@
 
 [![mvn](https://github.com/yegor256/jucs/actions/workflows/mvn.yml/badge.svg)](https://github.com/yegor256/jucs/actions/workflows/mvn.yml)
 [![PDD status](http://www.0pdd.com/svg?name=yegor256/jucs)](http://www.0pdd.com/p?name=yegor256/jucs)
-[![Maintainability](https://api.codeclimate.com/v1/badges/742bde48ea6fabdba1ce/maintainability)](https://codeclimate.com/github/yegor256/jucs/maintainability)
 [![Maven Central](https://img.shields.io/maven-central/v/com.yegor256/jucs.svg)](https://maven-badges.herokuapp.com/maven-central/com.yegor256/jucs)
 [![Javadoc](http://www.javadoc.io/badge/com.yegor256/jucs.svg)](http://www.javadoc.io/doc/com.yegor256/jucs)
 [![codecov](https://codecov.io/gh/yegor256/jucs/branch/master/graph/badge.svg)](https://codecov.io/gh/yegor256/jucs)
