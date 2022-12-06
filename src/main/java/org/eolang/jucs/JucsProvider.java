@@ -34,6 +34,7 @@ import java.util.stream.Stream;
 import org.cactoos.io.ResourceOf;
 import org.cactoos.text.TextOf;
 import org.cactoos.text.UncheckedText;
+import org.junit.jupiter.api.Named;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.ArgumentsProvider;
@@ -69,7 +70,12 @@ final class JucsProvider implements ArgumentsProvider,
             .stream()
             .map(
                 p -> Arguments.of(
-                    new UncheckedText(new TextOf(new ResourceOf(p))).asString()
+                    Named.of(
+                        p,
+                        new UncheckedText(
+                            new TextOf(new ResourceOf(p))
+                        ).asString()
+                    )
                 )
             );
     }
@@ -92,7 +98,7 @@ final class JucsProvider implements ArgumentsProvider,
         for (final String sub : subs) {
             final Path path = Paths.get(String.format("%s%s", prefix, sub));
             if (matcher.matches(path)) {
-                out.add(String.format("%s/%s", home, sub));
+                out.add(String.format("%s%s", home, sub));
             } else if (!JucsProvider.IS_FILE.matcher(sub).matches()) {
                 out.addAll(this.yamls(String.format("%s/", sub)));
             }
