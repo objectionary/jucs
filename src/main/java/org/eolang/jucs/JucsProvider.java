@@ -66,18 +66,7 @@ final class JucsProvider implements ArgumentsProvider,
     @Override
     public Stream<? extends Arguments> provideArguments(
         final ExtensionContext ctx) {
-        return this.yamls("")
-            .stream()
-            .map(
-                p -> Arguments.of(
-                    Named.of(
-                        p,
-                        new UncheckedText(
-                            new TextOf(new ResourceOf(p))
-                        ).asString()
-                    )
-                )
-            );
+        return this.yamls("").stream();
     }
 
     /**
@@ -85,8 +74,8 @@ final class JucsProvider implements ArgumentsProvider,
      * @param prefix Prefix (empty when it starts)
      * @return The list of full paths
      */
-    private Collection<String> yamls(final String prefix) {
-        final Collection<String> out = new LinkedList<>();
+    private Collection<Arguments> yamls(final String prefix) {
+        final Collection<Arguments> out = new LinkedList<>();
         final String home = String.format("%s/%s", this.sanitized(), prefix);
         final String folder = new UncheckedText(
             new TextOf(new ResourceOf(home))
@@ -98,7 +87,20 @@ final class JucsProvider implements ArgumentsProvider,
         for (final String sub : subs) {
             final Path path = Paths.get(String.format("%s%s", prefix, sub));
             if (matcher.matches(path)) {
-                out.add(String.format("%s%s", home, sub));
+                out.add(
+                    Arguments.of(
+                        Named.of(
+                            path.toString(),
+                            new UncheckedText(
+                                new TextOf(
+                                    new ResourceOf(
+                                        String.format("%s%s", home, sub)
+                                    )
+                                )
+                            ).asString()
+                        )
+                    )
+                );
             } else if (!JucsProvider.IS_FILE.matcher(sub).matches()) {
                 out.addAll(this.yamls(String.format("%s/", sub)));
             }
