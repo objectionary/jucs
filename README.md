@@ -1,3 +1,5 @@
+# Classpath Resources as JUnit Params
+
 [![EO principles respected here](https://www.elegantobjects.org/badge.svg)](https://www.elegantobjects.org)
 [![DevOps By Rultor.com](http://www.rultor.com/b/objectionary/jucs)](http://www.rultor.com/p/objectionary/jucs)
 [![We recommend IntelliJ IDEA](https://www.elegantobjects.org/intellij-idea.svg)](https://www.jetbrains.com/idea/)
@@ -10,9 +12,10 @@
 [![Hits-of-Code](https://hitsofcode.com/github/objectionary/jucs)](https://hitsofcode.com/view/github/objectionary/jucs)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/objectionary/jucs/blob/master/LICENSE.txt)
 
-There is a simple [`@ClasspathSource`](https://www.javadoc.io/doc/org.eolang/jucs/latest/org/eolang/jucs/ClasspathSource.html) 
+There is a simple [`@ClasspathSource`][annotation]
 annotation in this package. It may help you
-turn files, which are available in classpath, into sources of a JUnit5 test method.
+turn files, which are available in classpath, into
+sources of a JUnit5 test method.
 
 First, add this to your `pom.xml`:
 
@@ -20,10 +23,12 @@ First, add this to your `pom.xml`:
 <dependency>
   <groupId>org.eolang</groupId>
   <artifactId>jucs</artifactId>
+  <version>0.0.0</version>
 </dependency>
 ```
 
-Then, to iterate over the `*.yaml` files in the `src/test/resources/org/example/` 
+Then, to iterate over the `*.yaml` files in
+the `src/test/resources/org/example/`
 directory (assuming you use Maven or Gradle):
 
 ```java
@@ -48,13 +53,16 @@ in the [objectionary/eo](https://github.com/objectionary/eo) repository.
 
 ## How to Contribute
 
-Fork repository, make changes, send us a [pull request](https://www.yegor256.com/2014/04/15/github-guidelines.html).
+Fork repository, make changes, send us a [
+pull request](https://www.yegor256.com/2014/04/15/github-guidelines.html).
 We will review your changes and apply them to the `master` branch shortly,
 provided they don't violate our quality standards. To avoid frustration,
 before sending us your pull request please run full Maven build:
 
 ```bash
-$ mvn clean install -Pqulice
+mvn clean install -Pqulice
 ```
 
 You will need Maven 3.3+ and Java 8+.
+
+[annotation]: https://www.javadoc.io/doc/org.eolang/jucs/latest/org/eolang/jucs/ClasspathSource.html
