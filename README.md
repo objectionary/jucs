@@ -46,15 +46,15 @@ final class SimpleTest {
 ```
 
 The `simpleTest()` method will be called a number of times, every time
-getting the content of the next YAML file inside the `yaml` variable. 
+getting the content of the next YAML file inside the `yaml` variable.
 
 We use this library in `PacksTest`, `OptimizeMojoTest` and `SnippetsTest`
 in the [objectionary/eo](https://github.com/objectionary/eo) repository.
 
 ## How to Contribute
 
-Fork repository, make changes, send us a [
-pull request](https://www.yegor256.com/2014/04/15/github-guidelines.html).
+Fork repository, make changes, send us a
+[pull request](https://www.yegor256.com/2014/04/15/github-guidelines.html).
 We will review your changes and apply them to the `master` branch shortly,
 provided they don't violate our quality standards. To avoid frustration,
 before sending us your pull request please run full Maven build:
