@@ -23,7 +23,7 @@ First, add this to your `pom.xml`:
 <dependency>
   <groupId>org.eolang</groupId>
   <artifactId>jucs</artifactId>
-  <version>0.0.0</version>
+  <version>0.2.0</version>
 </dependency>
 ```
 
