@@ -8,7 +8,6 @@
 [![Javadoc](http://www.javadoc.io/badge/org.eolang/jucs.svg)](http://www.javadoc.io/doc/org.eolang/jucs)
 [![codecov](https://codecov.io/gh/objectionary/jucs/branch/master/graph/badge.svg)](https://codecov.io/gh/objectionary/jucs)
 [![Hits-of-Code](https://hitsofcode.com/github/objectionary/jucs)](https://hitsofcode.com/view/github/objectionary/jucs)
-![Lines of code](https://img.shields.io/tokei/lines/github/objectionary/jucs)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/objectionary/jucs/blob/master/LICENSE.txt)
 
 There is a simple [`@ClasspathSource`](https://www.javadoc.io/doc/org.eolang/jucs/latest/org/eolang/jucs/ClasspathSource.html) 
