@@ -110,7 +110,7 @@ final class JucsProvider implements ArgumentsProvider,
 
     /**
      * Get sanitized home path.
-     * @return The path without front slash and with a tailing one
+     * @return The path without front and tailing slashes
      */
     private String sanitized() {
         final String path = this.annotation.value();
