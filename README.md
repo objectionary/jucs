@@ -36,7 +36,7 @@ import org.eolang.jucs.ClasspathSource;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 
-final class SimpleTest { 
+final class SimpleTest {
     @ParameterizedTest
     @ClasspathSource(value="/org/example", glob="**.yaml")
     void simpleTest(String yaml) {
