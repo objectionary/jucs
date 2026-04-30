@@ -13,7 +13,6 @@ import org.junit.jupiter.params.provider.ArgumentsSource;
 
 /**
  * The annotation for your JUnit5 test methods.
- *
  * @since 0.0.1
  */
 @Documented
@@ -34,5 +33,4 @@ public @interface ClasspathSource {
      * @return Glob searching pattern, e.g. "**&#47;*.txt"
      */
     String glob() default "**/*.txt";
-
 }

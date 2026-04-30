@@ -20,10 +20,10 @@ import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.ArgumentsProvider;
 import org.junit.jupiter.params.support.AnnotationConsumer;
+import org.junit.jupiter.params.support.ParameterDeclarations;
 
 /**
  * Provider of the sources.
- *
  * @since 0.0.1
  */
 final class JucsProvider implements ArgumentsProvider,
@@ -33,6 +33,11 @@ final class JucsProvider implements ArgumentsProvider,
      * Is it a file?
      */
     private static final Pattern IS_FILE = Pattern.compile("^.+\\.[a-z]+$");
+
+    /**
+     * Line separator used to split classpath listings.
+     */
+    private static final Pattern NEWLINE = Pattern.compile("\\R");
 
     /**
      * The annotation of the user.
@@ -46,7 +51,7 @@ final class JucsProvider implements ArgumentsProvider,
 
     @Override
     public Stream<? extends Arguments> provideArguments(
-        final ExtensionContext ctx) {
+        final ParameterDeclarations params, final ExtensionContext ctx) {
         return this.yamls("").stream();
     }
 
@@ -58,13 +63,12 @@ final class JucsProvider implements ArgumentsProvider,
     private Collection<Arguments> yamls(final String prefix) {
         final Collection<Arguments> out = new LinkedList<>();
         final String home = String.format("%s/%s", this.sanitized(), prefix);
-        final String folder = new UncheckedText(
-            new TextOf(new ResourceOf(home))
-        ).asString();
         final PathMatcher matcher = FileSystems.getDefault().getPathMatcher(
             String.format("glob:%s", this.annotation.glob())
         );
-        final String[] subs = folder.split("\n");
+        final String[] subs = JucsProvider.NEWLINE.split(
+            new UncheckedText(new TextOf(new ResourceOf(home))).asString()
+        );
         for (final String sub : subs) {
             final Path path = Paths.get(String.format("%s%s", prefix, sub));
             if (matcher.matches(path)) {

@@ -8,7 +8,7 @@
   <parent>
     <groupId>com.jcabi</groupId>
     <artifactId>parent</artifactId>
-    <version>0.68.0</version>
+    <version>0.73.1</version>
   </parent>
   <groupId>org.eolang</groupId>
   <artifactId>jucs</artifactId>
@@ -66,18 +66,16 @@
     <dependency>
       <groupId>org.cactoos</groupId>
       <artifactId>cactoos</artifactId>
-      <version>0.57.0</version>
+      <version>0.61.0</version>
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
-      <version>5.10.1</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-params</artifactId>
-      <version>5.10.1</version>
       <scope>provided</scope>
     </dependency>
   </dependencies>
@@ -89,11 +87,27 @@
           <plugin>
             <groupId>com.qulice</groupId>
             <artifactId>qulice-maven-plugin</artifactId>
-            <version>0.24.0</version>
+            <version>0.27.5</version>
             <configuration>
               <excludes combine.children="append">
                 <exclude>checkstyle:/src/site/resources/.*</exclude>
                 <exclude>duplicatefinder:.*</exclude>
+              </excludes>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>jacoco</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <configuration>
+              <excludes combine.children="append">
+                <exclude>**/errorprone-classes/**</exclude>
               </excludes>
             </configuration>
           </plugin>

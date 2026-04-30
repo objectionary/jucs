@@ -5,7 +5,6 @@
 
 /**
  * JUnit Classpath Sources.
- *
  * @since 0.0.1
  */
 package org.eolang.jucs;
