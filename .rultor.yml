@@ -14,12 +14,12 @@ install: |
   pdd --file=/dev/null
 merge:
   script: |
-    mvn clean install -Pqulice --errors -Dstyle.color=never
+    mvn clean install -ntp -Pqulice --errors -Dstyle.color=never
 release:
   pre: false
   script: |-
     [[ "${tag}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || exit -1
     mvn versions:set "-DnewVersion=${tag}" -Dstyle.color=never
     git commit -am "${tag}"
-    mvn clean install -Dinvoker.skip
-    mvn clean deploy -Pobjectionary -Psonatype --errors --settings ../settings.xml -Dstyle.color=never
+    mvn clean install -ntp -Dinvoker.skip
+    mvn clean deploy -ntp -Pobjectionary -Psonatype --errors --settings ../settings.xml -Dstyle.color=never
