@@ -25,6 +25,7 @@ path = [
     "README.md",
     "renovate.json",
     "src/test/resources/com/yegor256/jucs/bar/y.text",
+    "src/test/resources/com/yegor256/jucs/foo/baz/deep.text",
     "src/test/resources/com/yegor256/jucs/x.text",
 ]
 precedence = "override"
