@@ -37,4 +37,10 @@ final class JucsProviderTest {
     void findsWithLocalGlob(final String file) {
         Assertions.assertEquals(file, "hey!\n");
     }
+
+    @ParameterizedTest
+    @ClasspathSource(value = "com/yegor256/jucs", glob = "**/baz/*.text")
+    void findsInNestedFolders(final String file) {
+        Assertions.assertEquals(file, "hey!\n");
+    }
 }

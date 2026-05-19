@@ -87,7 +87,7 @@ final class JucsProvider implements ArgumentsProvider,
                     )
                 );
             } else if (!JucsProvider.IS_FILE.matcher(sub).matches()) {
-                out.addAll(this.yamls(String.format("%s/", sub)));
+                out.addAll(this.yamls(String.format("%s%s/", prefix, sub)));
             }
         }
         return out;
