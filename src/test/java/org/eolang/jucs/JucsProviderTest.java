@@ -4,7 +4,7 @@
  */
 package org.eolang.jucs;
 
-import java.util.List;
+import java.util.Arrays;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 
@@ -54,6 +54,6 @@ final class JucsProviderTest {
     @ParameterizedTest
     @ClasspathSource(value = "com/yegor256/jucs", glob = "**/*.text")
     void exposesPathForTextFiles(final String content, final String path) {
-        Assertions.assertTrue(List.of("x.text", "bar/y.text").contains(path));
+        Assertions.assertTrue(Arrays.asList("x.text", "bar/y.text").contains(path));
     }
 }

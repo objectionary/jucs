@@ -76,18 +76,28 @@ final class JucsProvider implements ArgumentsProvider,
                 final String content = new UncheckedText(
                     new TextOf(new ResourceOf(String.format("%s%s", home, sub)))
                 ).asString();
+                final String normalized = JucsProvider.normalize(path);
                 if (withpath) {
                     out.add(
-                        Arguments.of(Named.of(path.toString(), content), path.toString())
+                        Arguments.of(Named.of(normalized, content), normalized)
                     );
                 } else {
-                    out.add(Arguments.of(Named.of(path.toString(), content)));
+                    out.add(Arguments.of(Named.of(normalized, content)));
                 }
             } else if (!JucsProvider.IS_FILE.matcher(sub).matches()) {
                 out.addAll(this.yamls(String.format("%s/", sub), withpath));
             }
         }
         return out;
+    }
+
+    /**
+     * Normalize path to use forward slashes on all platforms.
+     * @param path The path to normalize
+     * @return The normalized path string
+     */
+    private static String normalize(final Path path) {
+        return path.toString().replace('\\', '/');
     }
 
     /**
