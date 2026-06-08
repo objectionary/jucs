@@ -4,6 +4,7 @@
  */
 package org.eolang.jucs;
 
+import java.util.Arrays;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 
@@ -36,5 +37,23 @@ final class JucsProviderTest {
     @ClasspathSource(value = "com/yegor256/jucs/bar", glob = "*.text")
     void findsWithLocalGlob(final String file) {
         Assertions.assertEquals(file, "hey!\n");
+    }
+
+    @ParameterizedTest
+    @ClasspathSource(value = "com/yegor256/jucs/foo", glob = "*.txt")
+    void exposesLocalPath(final String content, final String path) {
+        Assertions.assertEquals("a.txt", path);
+    }
+
+    @ParameterizedTest
+    @ClasspathSource(value = "com/yegor256/jucs", glob = "**/*.txt")
+    void exposesNestedPath(final String content, final String path) {
+        Assertions.assertEquals("foo/a.txt", path);
+    }
+
+    @ParameterizedTest
+    @ClasspathSource(value = "com/yegor256/jucs", glob = "**/*.text")
+    void exposesPathForTextFiles(final String content, final String path) {
+        Assertions.assertTrue(Arrays.asList("x.text", "bar/y.text").contains(path));
     }
 }
