@@ -9,3 +9,5 @@
 *.iml
 node_modules/
 target/
+.aidy/
+.claude/
