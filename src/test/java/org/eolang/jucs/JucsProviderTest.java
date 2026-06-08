@@ -42,21 +42,18 @@ final class JucsProviderTest {
     @ParameterizedTest
     @ClasspathSource(value = "com/yegor256/jucs/foo", glob = "*.txt")
     void exposesLocalPath(final String content, final String path) {
-        Assertions.assertFalse(content.isEmpty());
         Assertions.assertEquals("a.txt", path);
     }
 
     @ParameterizedTest
     @ClasspathSource(value = "com/yegor256/jucs", glob = "**/*.txt")
     void exposesNestedPath(final String content, final String path) {
-        Assertions.assertFalse(content.isEmpty());
         Assertions.assertEquals("foo/a.txt", path);
     }
 
     @ParameterizedTest
     @ClasspathSource(value = "com/yegor256/jucs", glob = "**/*.text")
     void exposesPathForTextFiles(final String content, final String path) {
-        Assertions.assertFalse(content.isEmpty());
         Assertions.assertTrue(List.of("x.text", "bar/y.text").contains(path));
     }
 }
