@@ -52,15 +52,16 @@ final class JucsProvider implements ArgumentsProvider,
     @Override
     public Stream<? extends Arguments> provideArguments(
         final ParameterDeclarations params, final ExtensionContext ctx) {
-        return this.yamls("").stream();
+        return this.yamls("", params.getAll().size() > 1).stream();
     }
 
     /**
      * Find all YAMLs recursively on classpath.
      * @param prefix Prefix (empty when it starts)
+     * @param withpath Whether to include the classpath path as a second argument
      * @return The list of full paths
      */
-    private Collection<Arguments> yamls(final String prefix) {
+    private Collection<Arguments> yamls(final String prefix, final boolean withpath) {
         final Collection<Arguments> out = new LinkedList<>();
         final String home = String.format("%s/%s", this.sanitized(), prefix);
         final PathMatcher matcher = FileSystems.getDefault().getPathMatcher(
@@ -72,22 +73,18 @@ final class JucsProvider implements ArgumentsProvider,
         for (final String sub : subs) {
             final Path path = Paths.get(String.format("%s%s", prefix, sub));
             if (matcher.matches(path)) {
-                out.add(
-                    Arguments.of(
-                        Named.of(
-                            path.toString(),
-                            new UncheckedText(
-                                new TextOf(
-                                    new ResourceOf(
-                                        String.format("%s%s", home, sub)
-                                    )
-                                )
-                            ).asString()
-                        )
-                    )
-                );
+                final String content = new UncheckedText(
+                    new TextOf(new ResourceOf(String.format("%s%s", home, sub)))
+                ).asString();
+                if (withpath) {
+                    out.add(
+                        Arguments.of(Named.of(path.toString(), content), path.toString())
+                    );
+                } else {
+                    out.add(Arguments.of(Named.of(path.toString(), content)));
+                }
             } else if (!JucsProvider.IS_FILE.matcher(sub).matches()) {
-                out.addAll(this.yamls(String.format("%s/", sub)));
+                out.addAll(this.yamls(String.format("%s/", sub), withpath));
             }
         }
         return out;

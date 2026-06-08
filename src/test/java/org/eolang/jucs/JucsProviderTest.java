@@ -4,6 +4,7 @@
  */
 package org.eolang.jucs;
 
+import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 
@@ -50,5 +51,12 @@ final class JucsProviderTest {
     void exposesNestedPath(final String content, final String path) {
         Assertions.assertFalse(content.isEmpty());
         Assertions.assertEquals("foo/a.txt", path);
+    }
+
+    @ParameterizedTest
+    @ClasspathSource(value = "com/yegor256/jucs", glob = "**/*.text")
+    void exposesPathForTextFiles(final String content, final String path) {
+        Assertions.assertFalse(content.isEmpty());
+        Assertions.assertTrue(List.of("x.text", "bar/y.text").contains(path));
     }
 }
