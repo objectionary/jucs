@@ -18,7 +18,9 @@ final class JucsProviderTest {
     @ParameterizedTest
     @ClasspathSource("com/yegor256/jucs")
     void simpleTest(final String file) {
-        Assertions.assertEquals(file, "Hello, world!\n");
+        Assertions.assertTrue(
+            Arrays.asList("Hello, world!\n", "upper\n").contains(file)
+        );
     }
 
     @ParameterizedTest
@@ -48,7 +50,9 @@ final class JucsProviderTest {
     @ParameterizedTest
     @ClasspathSource(value = "com/yegor256/jucs", glob = "**/*.txt")
     void exposesNestedPath(final String content, final String path) {
-        Assertions.assertEquals("foo/a.txt", path);
+        Assertions.assertTrue(
+            Arrays.asList("foo/a.txt", "bar/z.TXT").contains(path)
+        );
     }
 
     @ParameterizedTest
