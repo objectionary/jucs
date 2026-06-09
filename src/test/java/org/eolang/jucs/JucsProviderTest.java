@@ -56,4 +56,10 @@ final class JucsProviderTest {
     void exposesPathForTextFiles(final String content, final String path) {
         Assertions.assertTrue(Arrays.asList("x.text", "bar/y.text").contains(path));
     }
+
+    @ParameterizedTest
+    @ClasspathSource(value = "com/yegor256/jucs", glob = "**/*.TXT")
+    void findsUppercaseExtension(final String file) {
+        Assertions.assertEquals(file, "upper\n");
+    }
 }

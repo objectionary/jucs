@@ -32,7 +32,7 @@ final class JucsProvider implements ArgumentsProvider,
     /**
      * Is it a file?
      */
-    private static final Pattern IS_FILE = Pattern.compile("^.+\\.[a-z]+$");
+    private static final Pattern IS_FILE = Pattern.compile("^.+\\.[A-Za-z0-9]+$");
 
     /**
      * Line separator used to split classpath listings.
