@@ -58,7 +58,7 @@ final class JucsProviderTest {
     }
 
     @ParameterizedTest
-    @ClasspathSource(value = "com/yegor256/jucs", glob = "**/*.TXT")
+    @ClasspathSource(value = "com/yegor256/jucs", glob = "**.TXT")
     void findsUppercaseExtension(final String file) {
         Assertions.assertEquals(file, "upper\n");
     }
