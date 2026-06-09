@@ -11,7 +11,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 /**
  * Simple test case.
  * @since 0.0.1
- * @checkstyle ProhibitLineSeparatorInStringsCheck (50 lines)
+ * @checkstyle ProhibitLineSeparatorInStringsCheck (100 lines)
  */
 final class JucsProviderTest {
 
