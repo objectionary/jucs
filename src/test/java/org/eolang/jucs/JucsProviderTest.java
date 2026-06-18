@@ -11,14 +11,16 @@ import org.junit.jupiter.params.ParameterizedTest;
 /**
  * Simple test case.
  * @since 0.0.1
- * @checkstyle ProhibitLineSeparatorInStringsCheck (50 lines)
+ * @checkstyle ProhibitLineSeparatorInStringsCheck (100 lines)
  */
 final class JucsProviderTest {
 
     @ParameterizedTest
     @ClasspathSource("com/yegor256/jucs")
     void simpleTest(final String file) {
-        Assertions.assertEquals(file, "Hello, world!\n");
+        Assertions.assertTrue(
+            Arrays.asList("Hello, world!\n", "upper\n").contains(file)
+        );
     }
 
     @ParameterizedTest
@@ -48,12 +50,20 @@ final class JucsProviderTest {
     @ParameterizedTest
     @ClasspathSource(value = "com/yegor256/jucs", glob = "**/*.txt")
     void exposesNestedPath(final String content, final String path) {
-        Assertions.assertEquals("foo/a.txt", path);
+        Assertions.assertTrue(
+            Arrays.asList("foo/a.txt", "bar/z.TXT").contains(path)
+        );
     }
 
     @ParameterizedTest
     @ClasspathSource(value = "com/yegor256/jucs", glob = "**/*.text")
     void exposesPathForTextFiles(final String content, final String path) {
         Assertions.assertTrue(Arrays.asList("x.text", "bar/y.text").contains(path));
+    }
+
+    @ParameterizedTest
+    @ClasspathSource(value = "com/yegor256/jucs/bar", glob = "*.TXT")
+    void findsUppercaseExtension(final String file) {
+        Assertions.assertEquals(file, "upper\n");
     }
 }

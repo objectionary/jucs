@@ -26,6 +26,7 @@ path = [
     "renovate.json",
     "src/test/resources/com/yegor256/jucs/bar/y.text",
     "src/test/resources/com/yegor256/jucs/x.text",
+    "src/test/resources/com/yegor256/jucs/bar/z.TXT",
 ]
 precedence = "override"
 SPDX-FileCopyrightText = "Copyright (c) 2022-2026 Objectionary.com"
