@@ -8,8 +8,8 @@ import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.nio.file.PathMatcher;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedList;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 import org.cactoos.io.ResourceOf;
@@ -62,15 +62,18 @@ final class JucsProvider implements ArgumentsProvider,
      * @return The list of full paths
      */
     private Collection<Arguments> yamls(final String prefix, final boolean withpath) {
-        final Collection<Arguments> out = new LinkedList<>();
+        final Collection<Arguments> out = new ArrayList<>(0);
         final String home = String.format("%s/%s", this.sanitized(), prefix);
         final PathMatcher matcher = FileSystems.getDefault().getPathMatcher(
             String.format("glob:%s", this.annotation.glob())
         );
         final String[] subs = JucsProvider.NEWLINE.split(
-            new UncheckedText(new TextOf(new ResourceOf(home))).asString()
+            new UncheckedText(new TextOf(new ResourceOf(home))).asString(), -1
         );
         for (final String sub : subs) {
+            if (sub.isEmpty()) {
+                continue;
+            }
             final Path path = Paths.get(String.format("%s%s", prefix, sub));
             if (matcher.matches(path)) {
                 final String content = new UncheckedText(
