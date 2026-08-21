@@ -55,6 +55,12 @@ final class JucsProvider implements ArgumentsProvider,
         return this.yamls("", params.getAll().size() > 1).stream();
     }
 
+    /**
+     * Find all YAMLs recursively on classpath.
+     * @param prefix Prefix (empty when it starts)
+     * @param withpath Whether to include the classpath path as a second argument
+     * @return The list of full paths
+     */
     private Collection<Arguments> yamls(final String prefix, final boolean withpath) {
         final Collection<Arguments> out = new ArrayList<>(0);
         final String home = String.format("%s/%s", this.sanitized(), prefix);
@@ -88,10 +94,19 @@ final class JucsProvider implements ArgumentsProvider,
         return out;
     }
 
+    /**
+     * Normalize path to use forward slashes on all platforms.
+     * @param path The path to normalize
+     * @return The normalized path string
+     */
     private static String normalize(final Path path) {
         return path.toString().replace('\\', '/');
     }
 
+    /**
+     * Get sanitized home path.
+     * @return The path without front and tailing slashes
+     */
     private String sanitized() {
         final String path = this.annotation.value();
         int begin = 0;
