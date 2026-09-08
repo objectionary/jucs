@@ -30,7 +30,7 @@ public @interface ClasspathSource {
     /**
      * The glob to search for (don't use just {@code "**"}, always
      * add extension, like {@code "**.txt"}!).
-     * @return Glob searching pattern, e.g. "**&#47;*.txt"
+     * @return Glob searching pattern, e.g. "**.txt"
      */
-    String glob() default "**/*.txt";
+    String glob() default "**.txt";
 }
