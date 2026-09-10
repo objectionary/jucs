@@ -90,21 +90,22 @@ final class JucsProvider implements ArgumentsProvider,
         return out;
     }
 
-    private static String normalize(final Path path) {
-        return path.toString().replace('\\', '/');
-    }
-
     static String sanitized(final String path) {
         final String trimmed = path.replaceAll("^/+", "").replaceAll("/+$", "");
         if (trimmed.isEmpty()) {
             throw new IllegalArgumentException(
                 String.format(
-                    "The @ClasspathSource value must name a directory "
-                        + "in the classpath, but it is \"%s\"",
-                    path
+                    "%s%s",
+                    "The @ClasspathSource value must name a directory in the classpath, ",
+                    String.format("but it is \"%s\"", path)
                 )
             );
         }
         return trimmed;
     }
+
+    private static String normalize(final Path path) {
+        return path.toString().replace('\\', '/');
+    }
+
 }
