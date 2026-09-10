@@ -7,6 +7,8 @@ package org.eolang.jucs;
 import java.util.Arrays;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 /**
  * Simple test case.
@@ -14,6 +16,27 @@ import org.junit.jupiter.params.ParameterizedTest;
  * @checkstyle ProhibitLineSeparatorInStringsCheck (100 lines)
  */
 final class JucsProviderTest {
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", "/"})
+    void rejectsMissingClasspathDirectory(final String path) {
+        Assertions.assertTrue(
+            Assertions.assertThrows(
+                IllegalArgumentException.class,
+                () -> JucsProvider.sanitized(path)
+            ).getMessage().contains("must name a directory")
+        );
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+        "//org/example//, org/example",
+        "/org/example, org/example",
+        "org/example/, org/example"
+    })
+    void stripsBoundarySlashes(final String input, final String expected) {
+        Assertions.assertEquals(expected, JucsProvider.sanitized(input));
+    }
 
     @ParameterizedTest
     @ClasspathSource("com/yegor256/jucs")

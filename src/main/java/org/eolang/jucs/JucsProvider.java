@@ -57,7 +57,9 @@ final class JucsProvider implements ArgumentsProvider,
 
     private Collection<Arguments> yamls(final String prefix, final boolean withpath) {
         final Collection<Arguments> out = new ArrayList<>(0);
-        final String home = String.format("%s/%s", this.sanitized(), prefix);
+        final String home = String.format(
+            "%s/%s", JucsProvider.sanitized(this.annotation.value()), prefix
+        );
         final PathMatcher matcher = FileSystems.getDefault().getPathMatcher(
             String.format("glob:%s", this.annotation.glob())
         );
@@ -92,16 +94,17 @@ final class JucsProvider implements ArgumentsProvider,
         return path.toString().replace('\\', '/');
     }
 
-    private String sanitized() {
-        final String path = this.annotation.value();
-        int begin = 0;
-        if (path.charAt(0) == '/') {
-            begin = 1;
+    static String sanitized(final String path) {
+        final String trimmed = path.replaceAll("^/+", "").replaceAll("/+$", "");
+        if (trimmed.isEmpty()) {
+            throw new IllegalArgumentException(
+                String.format(
+                    "The @ClasspathSource value must name a directory "
+                        + "in the classpath, but it is \"%s\"",
+                    path
+                )
+            );
         }
-        int end = path.length();
-        if (path.charAt(end - 1) == '/') {
-            end -= 1;
-        }
-        return path.substring(begin, end);
+        return trimmed;
     }
 }
