@@ -28,6 +28,7 @@ path = [
     "src/test/resources/com/yegor256/jucs/foo/baz/deep.text",
     "src/test/resources/com/yegor256/jucs/x.text",
     "src/test/resources/com/yegor256/jucs/bar/z.TXT",
+    "src/test/resources/com/yegor256/jucs/dotted.dir/probe.data",
 ]
 precedence = "override"
 SPDX-FileCopyrightText = "Copyright (c) 2022-2026 Objectionary.com"
