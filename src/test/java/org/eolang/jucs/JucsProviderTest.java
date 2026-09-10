@@ -70,6 +70,12 @@ final class JucsProviderTest {
     }
 
     @ParameterizedTest
+    @ClasspathSource(value = "com/yegor256/jucs", glob = "**/*.data")
+    void findsFilesInsideDottedDirectories(final String file) {
+        Assertions.assertEquals("present\n", file);
+    }
+
+    @ParameterizedTest
     @ClasspathSource(value = "com/yegor256/jucs/bar", glob = "*.TXT")
     void findsUppercaseExtension(final String file) {
         Assertions.assertEquals(file, "upper\n");

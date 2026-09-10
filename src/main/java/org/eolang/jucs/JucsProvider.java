@@ -4,7 +4,12 @@
  */
 package org.eolang.jucs;
 
+import java.io.IOException;
+import java.net.JarURLConnection;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.file.FileSystems;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.PathMatcher;
 import java.nio.file.Paths;
@@ -28,11 +33,6 @@ import org.junit.jupiter.params.support.ParameterDeclarations;
  */
 final class JucsProvider implements ArgumentsProvider,
     AnnotationConsumer<ClasspathSource> {
-
-    /**
-     * Is it a file?
-     */
-    private static final Pattern IS_FILE = Pattern.compile("^.+\\.[A-Za-z0-9]+$");
 
     /**
      * Line separator used to split classpath listings.
@@ -81,11 +81,35 @@ final class JucsProvider implements ArgumentsProvider,
                 } else {
                     out.add(Arguments.of(Named.of(normalized, content)));
                 }
-            } else if (!JucsProvider.IS_FILE.matcher(sub).matches()) {
+            } else if (JucsProvider.directory(String.format("%s%s", home, sub))) {
                 out.addAll(this.yamls(String.format("%s%s/", prefix, sub), withpath));
             }
         }
         return out;
+    }
+
+    private static boolean directory(final String resource) {
+        boolean directory = false;
+        final URL url = JucsProvider.class.getClassLoader().getResource(
+            resource.concat("/")
+        );
+        if (url != null) {
+            try {
+                if ("file".equals(url.getProtocol())) {
+                    directory = Files.isDirectory(Paths.get(url.toURI()));
+                } else if ("jar".equals(url.getProtocol())) {
+                    final JarURLConnection connection =
+                        (JarURLConnection) url.openConnection();
+                    directory = connection.getJarEntry() != null
+                        && connection.getJarEntry().isDirectory();
+                }
+            } catch (final IOException | URISyntaxException err) {
+                throw new IllegalStateException(
+                    String.format("Can't inspect classpath resource '%s'", resource), err
+                );
+            }
+        }
+        return directory;
     }
 
     private static String normalize(final Path path) {
