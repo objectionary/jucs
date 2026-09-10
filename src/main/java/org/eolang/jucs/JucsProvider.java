@@ -107,5 +107,4 @@ final class JucsProvider implements ArgumentsProvider,
     private static String normalize(final Path path) {
         return path.toString().replace('\\', '/');
     }
-
 }
