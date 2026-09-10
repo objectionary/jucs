@@ -90,7 +90,7 @@ final class JucsProvider implements ArgumentsProvider,
 
     private static boolean directory(final String resource) {
         boolean directory = false;
-        final URL url = JucsProvider.class.getClassLoader().getResource(
+        final URL url = Thread.currentThread().getContextClassLoader().getResource(
             resource.concat("/")
         );
         if (url != null) {
