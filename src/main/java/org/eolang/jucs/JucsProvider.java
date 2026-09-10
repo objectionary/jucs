@@ -55,6 +55,20 @@ final class JucsProvider implements ArgumentsProvider,
         return this.yamls("", params.getAll().size() > 1).stream();
     }
 
+    static String sanitized(final String path) {
+        final String trimmed = path.replaceAll("^/+", "").replaceAll("/+$", "");
+        if (trimmed.isEmpty()) {
+            throw new IllegalArgumentException(
+                String.format(
+                    "%s%s",
+                    "The @ClasspathSource value must name a directory in the classpath, ",
+                    String.format("but it is \"%s\"", path)
+                )
+            );
+        }
+        return trimmed;
+    }
+
     private Collection<Arguments> yamls(final String prefix, final boolean withpath) {
         final Collection<Arguments> out = new ArrayList<>(0);
         final String home = String.format(
@@ -88,20 +102,6 @@ final class JucsProvider implements ArgumentsProvider,
             }
         }
         return out;
-    }
-
-    static String sanitized(final String path) {
-        final String trimmed = path.replaceAll("^/+", "").replaceAll("/+$", "");
-        if (trimmed.isEmpty()) {
-            throw new IllegalArgumentException(
-                String.format(
-                    "%s%s",
-                    "The @ClasspathSource value must name a directory in the classpath, ",
-                    String.format("but it is \"%s\"", path)
-                )
-            );
-        }
-        return trimmed;
     }
 
     private static String normalize(final Path path) {
