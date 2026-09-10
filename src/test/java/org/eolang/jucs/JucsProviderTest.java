@@ -26,25 +26,25 @@ final class JucsProviderTest {
     @ParameterizedTest
     @ClasspathSource(value = "/com/yegor256/jucs", glob = "**/*.text")
     void findsInFolders(final String file) {
-        Assertions.assertEquals(file, "hey!\n");
+        Assertions.assertEquals("hey!\n", file);
     }
 
     @ParameterizedTest
     @ClasspathSource(value = "com/yegor256/jucs/bar", glob = "**.text")
     void findsWithBigGlob(final String file) {
-        Assertions.assertEquals(file, "hey!\n");
+        Assertions.assertEquals("hey!\n", file);
     }
 
     @ParameterizedTest
     @ClasspathSource(value = "com/yegor256/jucs/bar", glob = "*.text")
     void findsWithLocalGlob(final String file) {
-        Assertions.assertEquals(file, "hey!\n");
+        Assertions.assertEquals("hey!\n", file);
     }
 
     @ParameterizedTest
     @ClasspathSource(value = "com/yegor256/jucs", glob = "**/baz/*.text")
     void findsInNestedFolders(final String file) {
-        Assertions.assertEquals(file, "hey!\n");
+        Assertions.assertEquals("hey!\n", file);
     }
 
     @ParameterizedTest
@@ -72,6 +72,6 @@ final class JucsProviderTest {
     @ParameterizedTest
     @ClasspathSource(value = "com/yegor256/jucs/bar", glob = "*.TXT")
     void findsUppercaseExtension(final String file) {
-        Assertions.assertEquals(file, "upper\n");
+        Assertions.assertEquals("upper\n", file);
     }
 }
