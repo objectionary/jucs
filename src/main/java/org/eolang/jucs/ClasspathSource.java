@@ -13,6 +13,7 @@ import org.junit.jupiter.params.provider.ArgumentsSource;
 
 /**
  * The annotation for your JUnit5 test methods.
+ *
  * @since 0.0.1
  */
 @Documented
@@ -23,6 +24,7 @@ public @interface ClasspathSource {
 
     /**
      * The directory in classpath.
+     *
      * @return Path in classpath, e.g. "org/example/packs/"
      */
     String value();
@@ -30,6 +32,7 @@ public @interface ClasspathSource {
     /**
      * The glob to search for (don't use just {@code "**"}, always
      * add extension, like {@code "**.txt"}!).
+     *
      * @return Glob searching pattern, e.g. "**&#47;*.txt"
      */
     String glob() default "**/*.txt";

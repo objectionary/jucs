@@ -24,6 +24,7 @@ import org.junit.jupiter.params.support.ParameterDeclarations;
 
 /**
  * Provider of the sources.
+ *
  * @since 0.0.1
  */
 final class JucsProvider implements ArgumentsProvider,
