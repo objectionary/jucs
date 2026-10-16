@@ -75,4 +75,10 @@ final class JucsProviderTest {
     void findsUppercaseExtension(final String file) {
         Assertions.assertEquals(file, "upper\n");
     }
+
+    @ParameterizedTest
+    @ClasspathSource(value = "sample", glob = "*.txt")
+    void skipsUnmatchedExtensionlessFile(final String content, final String path) {
+        Assertions.assertEquals("case.txt", path);
+    }
 }
