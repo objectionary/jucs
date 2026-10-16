@@ -1,0 +1,4 @@
+SPDX-FileCopyrightText: Copyright (c) 2022-2026 Objectionary.com
+SPDX-License-Identifier: MIT
+
+This extensionless file must be ignored by the "*.txt" glob.
