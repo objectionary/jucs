@@ -53,7 +53,12 @@ final class JucsProvider implements ArgumentsProvider,
     @Override
     public Stream<? extends Arguments> provideArguments(
         final ParameterDeclarations params, final ExtensionContext ctx) {
-        return this.yamls("", params.getAll().size() > 1).stream();
+        return this.yamls(
+            "",
+            params.get(1)
+                .map(param -> String.class.equals(param.getParameterType()))
+                .orElse(false)
+        ).stream();
     }
 
     private Collection<Arguments> yamls(final String prefix, final boolean withpath) {
