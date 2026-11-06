@@ -78,6 +78,12 @@ final class JucsProviderTest {
     }
 
     @ParameterizedTest
+    @ClasspathSource(value = "sample", glob = "*.txt")
+    void skipsUnmatchedExtensionlessFile(final String content, final String path) {
+        Assertions.assertEquals("case.txt", path);
+    }
+
+    @ParameterizedTest
     @ClasspathSource(value = "fixtures", glob = "*.txt")
     void readsFixtureWithTestInfo(final String content, final TestInfo info) {
         Assertions.assertEquals(
