@@ -6,6 +6,7 @@ package org.eolang.jucs;
 
 import java.util.Arrays;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.params.ParameterizedTest;
 
 /**
@@ -80,5 +81,15 @@ final class JucsProviderTest {
     @ClasspathSource(value = "sample", glob = "*.txt")
     void skipsUnmatchedExtensionlessFile(final String content, final String path) {
         Assertions.assertEquals("case.txt", path);
+    }
+
+    @ParameterizedTest
+    @ClasspathSource(value = "fixtures", glob = "*.txt")
+    void readsFixtureWithTestInfo(final String content, final TestInfo info) {
+        Assertions.assertEquals(
+            "hello\n",
+            content,
+            String.format("Wrong fixture content in %s", info.getDisplayName())
+        );
     }
 }
