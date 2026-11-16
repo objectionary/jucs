@@ -74,7 +74,9 @@ final class JucsProvider implements ArgumentsProvider,
                 continue;
             }
             final Path path = Paths.get(String.format("%s%s", prefix, sub));
-            if (matcher.matches(path)) {
+            if (JucsProvider.directory(String.format("%s%s", home, sub))) {
+                out.addAll(this.yamls(String.format("%s%s/", prefix, sub), withpath));
+            } else if (matcher.matches(path)) {
                 final String content = new UncheckedText(
                     new TextOf(new ResourceOf(String.format("%s%s", home, sub)))
                 ).asString();
@@ -86,8 +88,6 @@ final class JucsProvider implements ArgumentsProvider,
                 } else {
                     out.add(Arguments.of(Named.of(normalized, content)));
                 }
-            } else if (JucsProvider.directory(String.format("%s%s", home, sub))) {
-                out.addAll(this.yamls(String.format("%s%s/", prefix, sub), withpath));
             }
         }
         return out;
