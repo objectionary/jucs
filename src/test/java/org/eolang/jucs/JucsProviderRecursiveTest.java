@@ -16,6 +16,16 @@ import org.junit.jupiter.params.ParameterizedTest;
 final class JucsProviderRecursiveTest {
 
     @ParameterizedTest
+    @ClasspathSource(value = "dotted-fixtures", glob = "**/*.txt")
+    void traversesDottedDirectory(final String content, final String path) {
+        Assertions.assertIterableEquals(
+            Arrays.asList("present", "dotted.dir/probe.txt"),
+            Arrays.asList(content.trim(), path),
+            "A directory containing a dot must expose the matching fixture"
+        );
+    }
+
+    @ParameterizedTest
     @ClasspathSource(value = "recursive-globs", glob = "**")
     void traversesMatchingDirectories(final String content, final String path) {
         Assertions.assertIterableEquals(
